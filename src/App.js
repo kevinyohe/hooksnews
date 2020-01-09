@@ -18,12 +18,21 @@ const getResults = async  () =>{
     setResults(response.data.hits);
 }
 
+const handleSearch = (event) =>{
+  event.preventDefault();
+  getResults();
+
+}
+
   return (
    <> 
+   <form onSubmit={handleSearch}>
    <input type="text" value={query} onChange={event=>setQuery(event.target.value)}/>
-   <button type="button" onClick={event=>getResults()}>
+   <button type="submit" >
      Search
      </button>
+    </form>     
+
     {results.map(result => (
       <li key={result.objectID}>
       <a href={result.url}>{result.title}</a>
