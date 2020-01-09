@@ -4,12 +4,12 @@ import axios from 'axios';
 
 function App() {
   const [results, setResults] = useState([])
-  const [query, setQuery] = useState("reacthooks");
+  const [query, setQuery] = useState("react hooks");
 
   useEffect(() => {
     getResults();
     
-  }, [query])
+  }, [])
  
 
 const getResults = async  () =>{
@@ -20,7 +20,10 @@ const getResults = async  () =>{
 
   return (
    <> 
-   <input type="text" onChange={event=>setQuery(event.target.value)}/>
+   <input type="text" value={query} onChange={event=>setQuery(event.target.value)}/>
+   <button type="button" onClick={event=>getResults()}>
+     Search
+     </button>
     {results.map(result => (
       <li key={result.objectID}>
       <a href={result.url}>{result.title}</a>
